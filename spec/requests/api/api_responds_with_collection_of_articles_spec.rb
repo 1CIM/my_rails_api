@@ -1,5 +1,7 @@
 RSpec.describe 'GET /api/artices' do
   describe 'successfully' do
+    let!(:article_1) {create(:article, title: 'älgsonden har ollat månen')}
+    let!(:articles_2_3) {2.times{create(:article)}}
     before do
       get '/api/articles'
     end
@@ -9,11 +11,11 @@ RSpec.describe 'GET /api/artices' do
     end
 
     it 'is expeted to return all articles' do
-      expected(response_json['articles'].count).to eq 3
+      expect(response_json['articles'].count).to eq 3
     end
 
     it 'is expected to return articles titles' do
-      expect(response_json['articles'].first['title']).to eq 'This is an awsome title'
+      expect(response_json['articles'].first['title']).to eq 'älgsonden har ollat månen'
     end
   end
 end
