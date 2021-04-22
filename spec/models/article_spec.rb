@@ -4,10 +4,15 @@ RSpec.describe Article, type: :model do
       .to have_db_column(:title)
       .of_type(:string)
     }
+    it { is_expected
+      .to have_db_column(:body)
+      .of_type(:text)
+    }
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of :title }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:body) }
   end
 
   describe 'Factory' do
